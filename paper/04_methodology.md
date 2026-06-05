@@ -2,238 +2,80 @@
 
 ## A. Framework Overview
 
-This work proposes a Multi-Agent AI Cyber Defense Framework designed to provide autonomous, explainable, trust-aware, and auditable cybersecurity operations for IoT-cloud environments. The framework integrates six specialized agents that collaboratively perform attack detection, threat classification, decision explanation, response generation, trust evaluation, and immutable evidence preservation.
+This study proposes a Multi-Agent AI Cyber Defense Framework for securing IoT-cloud environments through the integration of artificial intelligence, trust-aware decision support, explainable threat intelligence, and blockchain-based forensic logging. The primary objective of the framework is to transform raw IoT-cloud telemetry into actionable cybersecurity intelligence while maintaining transparency, accountability, and auditability throughout the security decision-making process.
 
-Unlike conventional intrusion detection systems that primarily focus on identifying malicious events, the proposed architecture establishes a complete cyber defense workflow in which each agent is responsible for a specific stage of the security decision-making process. The framework transforms raw IoT-cloud telemetry into actionable security intelligence while maintaining transparency and forensic accountability.
+Unlike traditional intrusion detection systems that focus exclusively on identifying malicious events, the proposed framework establishes a complete cyber defense pipeline in which specialized agents collaboratively perform attack detection, threat classification, explanation generation, response recommendation, trust assessment, and incident evidence preservation. The framework is designed to emulate the operational workflow of a security operations center by distributing responsibilities across multiple intelligent components, each responsible for a specific stage of cyber defense.
 
-The overall architecture consists of the following components:
-
-1. Detection Agent
-2. Threat Analysis Agent
-3. Explainability Agent
-4. Response Agent
-5. Trust Manager
-6. Blockchain Logger
-
-The interaction among these agents forms a sequential cyber defense pipeline that enables automated security operations while preserving human oversight through trust-aware decision support.
+The proposed architecture consists of six interconnected agents: the Detection Agent, Threat Analysis Agent, Explainability Agent, Response Agent, Trust Manager, and Blockchain Logger. These agents operate sequentially and exchange structured security intelligence, thereby enabling an end-to-end autonomous cyber defense process.
 
 ## B. Detection Agent
 
-The Detection Agent serves as the first layer of defense and is responsible for identifying whether an incoming event represents normal behavior or malicious activity.
+The Detection Agent serves as the first line of defense within the proposed architecture. Its primary responsibility is to determine whether an incoming event corresponds to legitimate system behavior or malicious activity. The agent receives IoT-cloud telemetry features extracted from device operations, network communications, cloud services, and protocol-level interactions.
 
-Let
+Let (X = {x_1, x_2, ..., x_n}) denote the feature vector representing an individual event. The detection process can be formulated as a binary classification problem in which a prediction function (f(X)) maps the input event to either a benign class or an attack class.
 
-X = {x₁, x₂, ..., xₙ}
+A Random Forest classifier is employed due to its robustness against noisy cybersecurity data, ability to model non-linear relationships, and strong performance in high-dimensional environments [19]. To minimize the possibility of information leakage and better simulate realistic deployment conditions, the model is trained and evaluated using temporally separated datasets.
 
-represent the set of IoT-cloud telemetry features extracted from network, device, communication, and operational data sources.
-
-The Detection Agent performs binary classification:
-
-f(X) → {0,1}
-
-where
-
-0 denotes normal activity and
-
-1 denotes malicious activity.
-
-A Random Forest classifier is employed due to its robustness, interpretability, and suitability for high-dimensional cybersecurity datasets [19].
-
-The model is trained using temporally separated data to reduce the risk of information leakage and provide a more realistic evaluation of deployment performance.
-
-For each event, the Detection Agent produces:
-
-Pattack
-
-representing the confidence associated with the attack prediction.
-
-The output is expressed as:
-
-Detection Result = {Prediction, Confidence}
-
-Only events classified as attacks are forwarded to subsequent agents.
+For each analyzed event, the Detection Agent produces a prediction label together with an associated confidence score. Only events identified as malicious are forwarded to subsequent stages of the framework. This design reduces computational overhead and ensures that advanced analytical resources are dedicated exclusively to suspicious activities.
 
 ## C. Threat Analysis Agent
 
-After an attack has been detected, the Threat Analysis Agent determines the specific attack category.
+Following attack detection, the Threat Analysis Agent is responsible for determining the specific nature of the identified threat. Rather than performing direct multi-class classification, the framework adopts a hierarchical two-stage analysis strategy.
 
-The proposed framework employs a two-stage classification strategy.
+In the first stage, attacks are grouped into broader threat categories, including access attacks, network flooding attacks, malware-related attacks, integrity attacks, and signal-based attacks. This intermediate grouping allows the model to capture higher-level attack semantics before performing fine-grained classification.
 
-In Stage 1, attacks are grouped into broader threat categories:
+In the second stage, the agent identifies the exact attack category. The evaluated attack classes include unauthorized access, credential theft, replay attacks, distributed denial-of-service attacks, MQTT flooding, malware activity, botnet command-and-control communication, data tampering, and jamming attacks.
 
-* Access Attacks
-* Network Flooding Attacks
-* Malware Attacks
-* Integrity Attacks
-* Signal Attacks
+Formally, the first-stage classifier predicts an attack group (G), while the second-stage classifier predicts the final attack type (T). The resulting output includes the attack group, attack category, and a confidence value indicating the certainty of the prediction.
 
-Formally,
-
-g(X) → G
-
-where G represents the predicted attack group.
-
-In Stage 2, the exact attack type is identified:
-
-h(X) → T
-
-where T represents the final attack category.
-
-The evaluated attack classes include:
-
-* Unauthorized Access
-* Credential Theft
-* Replay Attack
-* DDoS
-* MQTT Flood
-* Malware
-* Botnet C2
-* Data Tampering
-* Jamming
-
-The Threat Analysis Agent produces:
-
-Threat Result = {Attack Group, Attack Type, Confidence}
-
-where the confidence score indicates the certainty of the predicted attack class.
+This hierarchical approach improves interpretability and enables the framework to perform both strategic and operational threat assessment. The resulting threat intelligence serves as the foundation for subsequent explanation and response generation processes.
 
 ## D. Explainability Agent
 
-One of the primary limitations of AI-driven cybersecurity systems is the lack of transparency regarding model decisions. To address this challenge, the proposed framework incorporates an Explainability Agent.
+One of the major limitations of contemporary AI-driven cybersecurity systems is their black-box nature. Security analysts often require an understanding of why a particular event was classified as malicious before initiating defensive actions. To address this challenge, the proposed framework incorporates an Explainability Agent.
 
-The Explainability Agent analyzes the feature importance values generated by the Threat Analysis Agent and identifies the most influential attributes responsible for a given prediction.
+The Explainability Agent analyzes feature importance values generated by the threat classification model and identifies the most influential attributes responsible for a given prediction. Let (F = {f_1, f_2, ..., f_k}) represent the feature space. The contribution of each feature is extracted from the trained classification model, and the most influential features are selected according to their relative importance scores.
 
-Let
-
-F = {f₁,f₂,...,fk}
-
-represent the feature set.
-
-The importance of each feature is obtained from the trained classification model.
-
-The top-k influential features are selected:
-
-TopFeatures = argmax(Importance(F))
-
-The Explainability Agent generates both structured explanations and human-readable descriptions.
-
-For example, an unauthorized access attack may be explained by:
-
-* High port scan score
-* Elevated credential risk score
-* Abnormal payload characteristics
-
-This mechanism improves analyst understanding and supports explainable cyber defense operations.
+The agent then generates both structured and human-readable explanations describing the rationale behind the classification decision. For example, an unauthorized access incident may be associated with elevated credential risk scores, abnormal port-scanning behavior, and unusual payload characteristics. By providing interpretable security intelligence, the Explainability Agent improves analyst trust, facilitates forensic investigations, and supports transparent decision-making.
 
 ## E. Response Agent
 
-The Response Agent transforms threat intelligence into actionable security recommendations.
+The Response Agent transforms threat intelligence into actionable security recommendations. After receiving the predicted attack category from the Threat Analysis Agent, the Response Agent consults a predefined response knowledge base that maps attack types to mitigation strategies.
 
-A rule-based decision engine maps detected attack categories to predefined mitigation strategies.
+The response generation process can be represented as a function (R = Response(T)), where (T) denotes the predicted attack category and (R) denotes the generated response plan. Each response plan contains a severity assessment together with a set of recommended defensive actions.
 
-Let
+For instance, incidents classified as unauthorized access attacks trigger recommendations such as credential revocation, password reset enforcement, multi-factor authentication activation, and identity-access management review. Similarly, DDoS attacks result in recommendations involving traffic filtering, rate limiting, and infrastructure scaling.
 
-T
-
-represent the predicted attack type.
-
-The Response Agent generates:
-
-R = Response(T)
-
-where
-
-R = {Severity, Recommended Actions}
-
-For example, unauthorized access incidents trigger actions such as credential revocation, password reset, multi-factor authentication enforcement, and identity access management review.
-
-This component supports semi-autonomous cyber defense by reducing analyst workload and accelerating incident response.
+The Response Agent reduces analyst workload and accelerates incident mitigation by providing immediate, context-aware defensive guidance.
 
 ## F. Trust Manager
 
-Autonomous security systems should not blindly execute every AI-generated recommendation. Therefore, the proposed framework introduces a Trust Manager responsible for evaluating the reliability of security decisions.
+Although autonomous cybersecurity systems offer significant operational advantages, blindly executing AI-generated recommendations may introduce unacceptable risks. Consequently, the proposed framework incorporates a Trust Manager responsible for evaluating the reliability of security decisions before action is taken.
 
-The trust score is calculated using the confidence values produced by the Detection Agent and Threat Analysis Agent.
+The trust assessment mechanism utilizes confidence values produced by both the Detection Agent and the Threat Analysis Agent. Let (C_d) denote the detection confidence and (C_t) denote the threat classification confidence. The overall trust score is computed as
 
-Let
+[
+TrustScore = \frac{C_d + C_t}{2}
+]
 
-Cd
+The resulting score is subsequently mapped to one of three operational decision levels. High-confidence incidents are considered suitable for automated response, moderate-confidence incidents require human analyst review, and low-confidence incidents are escalated for additional investigation.
 
-denote detection confidence and
-
-Ct
-
-denote threat classification confidence.
-
-The trust score is computed as:
-
-Tscore = (Cd + Ct)/2
-
-The resulting value is mapped into one of three decision categories:
-
-If
-
-Tscore ≥ 0.85
-
-the incident is considered sufficiently reliable for automatic response.
-
-If
-
-0.60 ≤ Tscore < 0.85
-
-the incident is forwarded for human review.
-
-If
-
-Tscore < 0.60
-
-the incident is escalated for additional investigation.
-
-This mechanism introduces trust-aware decision support and reduces the risks associated with fully autonomous cybersecurity operations.
+This trust-aware mechanism introduces an additional layer of decision governance and helps balance automation with operational oversight. As a result, the framework supports responsible deployment of AI-driven cybersecurity technologies in real-world environments.
 
 ## G. Blockchain Logger
 
-The final stage of the framework is responsible for preserving incident evidence in an immutable ledger.
+The final component of the proposed framework is the Blockchain Logger, which is responsible for preserving incident evidence in a tamper-resistant ledger. Traditional logging systems typically rely on centralized storage architectures that may be altered, deleted, or manipulated by adversaries. Such limitations can significantly hinder forensic investigations and regulatory compliance efforts.
 
-For each processed incident, a blockchain block is created containing:
+To address these concerns, the proposed framework records every processed incident as a blockchain block. Each block contains the event identifier, detection result, threat analysis outcome, explanation report, response recommendation, trust assessment, timestamp, and cryptographic hash values.
 
-* Event Identifier
-* Detection Result
-* Threat Analysis Result
-* Explanation Result
-* Response Recommendation
-* Trust Evaluation
+A cryptographic hash is generated using the current block contents together with the hash of the previous block. Consequently, every block becomes mathematically linked to its predecessor, creating an immutable chain of incident records. Any modification to previously stored evidence alters the associated hash values and immediately invalidates the integrity of the ledger.
 
-Each block contains:
-
-Previous Hash
-
-Current Hash
-
-Timestamp
-
-Incident Data
-
-The block hash is computed as:
-
-Hash(BlockData + PreviousHash)
-
-using a cryptographic hashing function.
-
-The chaining of hashes ensures that any modification to previously stored evidence invalidates the entire ledger structure.
-
-Consequently, the Blockchain Logger provides tamper-resistant storage for cybersecurity investigations, forensic analysis, compliance auditing, and incident traceability.
+The Blockchain Logger therefore provides tamper-resistant incident storage, supports forensic traceability, and establishes a verifiable audit trail for cybersecurity operations.
 
 ## H. End-to-End Operational Workflow
 
-The complete operational workflow of the proposed framework can be summarized as follows:
+The complete operational workflow begins with the collection of IoT-cloud telemetry data from monitored devices and cloud services. Incoming events are first analyzed by the Detection Agent to determine whether malicious activity is present. Detected attacks are subsequently examined by the Threat Analysis Agent to identify their specific categories and characteristics.
 
-1. IoT-cloud telemetry is collected.
-2. The Detection Agent identifies malicious events.
-3. The Threat Analysis Agent determines attack categories.
-4. The Explainability Agent generates interpretable explanations.
-5. The Response Agent recommends mitigation actions.
-6. The Trust Manager evaluates decision reliability.
-7. The Blockchain Logger stores all incident evidence in an immutable ledger.
+The Explainability Agent then generates interpretable explanations describing the reasoning behind the classification decision. Based on the identified threat type, the Response Agent recommends appropriate mitigation actions. The Trust Manager evaluates the reliability of the generated security intelligence and determines the level of automation that should be applied to the incident response process.
 
-This workflow enables a fully integrated cyber defense process that combines intelligent threat detection, explainability, trust-aware automation, and blockchain-based forensic accountability within a unified architecture.
+Finally, all generated evidence, explanations, trust assessments, and response recommendations are permanently stored by the Blockchain Logger. Through this integrated workflow, the proposed framework delivers intelligent threat detection, explainable decision support, trust-aware automation, and immutable forensic accountability within a unified cyber defense architecture.
