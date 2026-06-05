@@ -384,6 +384,4 @@ python -m evaluation.evaluate_system
 
 If you use this framework in research, please cite:
 
-Raju Molla,
-"Multi-Agent AI Cyber Defense Framework with Blockchain-Based Trust Management and Explainable Threat Intelligence for IoT-Cloud Environments",
-2026.
+**pending**
