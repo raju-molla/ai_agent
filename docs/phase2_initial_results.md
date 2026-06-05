@@ -1,0 +1,1 @@
+Phase 2 Threat Analysis Agent initial multiclass model achieved 74.07% accuracy, 74.81% macro F1-score, and 73.97% weighted F1-score. Strong performance was observed for unauthorized_access, malware, data_tampering, and jamming. Misclassification mainly occurred among botnet_c2, ddos, and mqtt_flood due to similar network-volume behaviour.
