@@ -45,5 +45,41 @@
         },
         "previous_hash": "1c8f65c5230bac4e4ca8a7264980c55ab45b6d300ddef481a75650b09456ade4",
         "block_hash": "ac6344b8a0f6fb683b5679aa631c52012382ddd159df4ebfcf069c3cffc049ce"
+    },
+    {
+        "block_index": 3,
+        "timestamp": "2026-06-05T03:56:59.108740+00:00",
+        "incident_report": {
+            "event_id": "evt-000000003",
+            "actual_label": "unauthorized_access",
+            "detection": {
+                "prediction": "attack",
+                "confidence": 0.5776916733529418
+            },
+            "threat_analysis": {
+                "attack_group": "access_attack",
+                "group_confidence": 0.99768442866154,
+                "attack_type": "unauthorized_access",
+                "attack_confidence": 0.9381638459816427
+            },
+            "response": {
+                "attack_group": "access_attack",
+                "attack_type": "unauthorized_access",
+                "confidence": 0.9381638459816427,
+                "severity": "high",
+                "recommended_actions": [
+                    "Revoke suspicious credentials",
+                    "Force password reset",
+                    "Enable multi-factor authentication",
+                    "Review IAM policy changes"
+                ]
+            },
+            "trust": {
+                "trust_score": 0.7579,
+                "decision": "human_review"
+            }
+        },
+        "previous_hash": "ac6344b8a0f6fb683b5679aa631c52012382ddd159df4ebfcf069c3cffc049ce",
+        "block_hash": "f3c45e7b1366e6a7bf953105a15ea6dc184a5a2bdecee525dd38434e88b39424"
     }
 ]

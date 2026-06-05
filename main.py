@@ -8,6 +8,7 @@ from agents.model_loader import (
 )
 
 from agents.response_agent import recommend_response
+from agents.trust_manager import calculate_trust_score
 from blockchain.blockchain_logger import log_incident, verify_ledger
 
 
@@ -50,12 +51,21 @@ def main():
         print("\n=== Response Agent Result ===")
         print(response_result)
 
+        trust_result = calculate_trust_score(
+            detection_result,
+            threat_result
+        )
+
+        print("\n=== Trust Manager Result ===")
+        print(trust_result)
+
         final_report = {
             "event_id": event_id,
             "actual_label": actual_label,
             "detection": detection_result,
             "threat_analysis": threat_result,
-            "response": response_result
+            "response": response_result,
+            "trust": trust_result
         }
 
         print("\n=== Final Incident Report ===")
