@@ -33608,5 +33608,52 @@
         },
         "previous_hash": "2483f08e38f5495b5ecf5c0a15be56bd4921d11f066cb3f8bed60f279b7a0fdb",
         "block_hash": "1e9e8a48f3c3bddb650d4139755370bb112c90dfccbbb6636b5dc8f832fa1ce5"
+    },
+    {
+        "block_index": 935,
+        "timestamp": "2026-06-08T04:43:07.005735+00:00",
+        "incident_report": {
+            "event_id": "evt-000000003",
+            "actual_label": "unauthorized_access",
+            "detection": {
+                "prediction": "attack",
+                "confidence": 0.5776916733529416
+            },
+            "threat_analysis": {
+                "attack_group": "access_attack",
+                "group_confidence": 0.99768442866154,
+                "attack_type": "unauthorized_access",
+                "attack_confidence": 0.9381638459816427
+            },
+            "explanation": {
+                "attack_type": "unauthorized_access",
+                "top_features": [
+                    "port_scan_score",
+                    "credential_risk_score",
+                    "tamper_score",
+                    "malware_score",
+                    "packet_loss_pct"
+                ],
+                "explanation": "The event was classified as 'unauthorized_access' based primarily on the influence of: port_scan_score, credential_risk_score, tamper_score, malware_score, packet_loss_pct."
+            },
+            "response": {
+                "attack_group": "access_attack",
+                "attack_type": "unauthorized_access",
+                "confidence": 0.9381638459816427,
+                "severity": "high",
+                "recommended_actions": [
+                    "Revoke suspicious credentials",
+                    "Force password reset",
+                    "Enable multi-factor authentication",
+                    "Review IAM policy changes"
+                ]
+            },
+            "trust": {
+                "trust_score": 0.7579,
+                "decision": "human_review"
+            }
+        },
+        "previous_hash": "1e9e8a48f3c3bddb650d4139755370bb112c90dfccbbb6636b5dc8f832fa1ce5",
+        "block_hash": "168e461c776a03d7e2d7c4fdff1fd3b9d12f37364e7e7e2246c2ad3edf80a5ba"
     }
 ]

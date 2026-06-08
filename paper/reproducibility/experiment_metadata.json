@@ -1,0 +1,34 @@
+{
+    "project_title": "Multi-Agent AI Cyber Defense Framework with Trust-Aware Decision Making and Blockchain-Inspired Incident Logging for IoT-Cloud Environments",
+    "dataset": "IoT-Cloud-Sec",
+    "dataset_records": 100000,
+    "dataset_columns": 126,
+    "random_seed": 42,
+    "detection_agent": {
+        "model": "RandomForestClassifier",
+        "n_estimators": 100,
+        "max_depth": 5,
+        "min_samples_leaf": 20,
+        "split": "Temporal 80/20 split",
+        "features": "Safe IoT, device, network, and communication telemetry"
+    },
+    "threat_analysis_agent": {
+        "model": "Two-stage RandomForestClassifier",
+        "stage_1": "Attack group classification",
+        "stage_2": "Exact attack type classification",
+        "evaluation": "Attack-only records"
+    },
+    "trust_manager": {
+        "trust_score_formula": "(Detection Confidence + Attack Confidence) / 2",
+        "auto_response": "Trust Score >= 0.85",
+        "human_review": "0.60 <= Trust Score < 0.85",
+        "escalate": "Trust Score < 0.60"
+    },
+    "immutable_logger": {
+        "implementation": "Blockchain-inspired hash-chain incident ledger",
+        "hash_algorithm": "SHA-256",
+        "purpose": "Tamper-evident incident evidence preservation"
+    },
+    "code_repository": "https://github.com/raju-molla/ai_agent",
+    "generated_at": "2026-06-08T04:47:17.960553+00:00"
+}

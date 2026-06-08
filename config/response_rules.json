@@ -1,0 +1,83 @@
+{
+  "unauthorized_access": {
+    "severity": "high",
+    "recommended_actions": [
+      "Revoke suspicious credentials",
+      "Force password reset",
+      "Enable multi-factor authentication",
+      "Review IAM policy changes"
+    ]
+  },
+  "ddos": {
+    "severity": "high",
+    "recommended_actions": [
+      "Enable rate limiting",
+      "Block suspicious source traffic",
+      "Scale gateway resources",
+      "Monitor packet loss and latency"
+    ]
+  },
+  "mqtt_flood": {
+    "severity": "medium",
+    "recommended_actions": [
+      "Throttle MQTT publish rates",
+      "Inspect abnormal topic activity",
+      "Limit broker connection bursts",
+      "Monitor queue depth and stream lag"
+    ]
+  },
+  "malware": {
+    "severity": "high",
+    "recommended_actions": [
+      "Isolate affected device",
+      "Run malware scan",
+      "Revoke suspicious sessions",
+      "Patch firmware and software"
+    ]
+  },
+  "credential_theft": {
+    "severity": "high",
+    "recommended_actions": [
+      "Force credential rotation",
+      "Invalidate active sessions",
+      "Enable MFA",
+      "Review authentication logs"
+    ]
+  },
+  "data_tampering": {
+    "severity": "high",
+    "recommended_actions": [
+      "Validate sensor data integrity",
+      "Restore trusted telemetry baseline",
+      "Inspect affected device firmware",
+      "Audit data modification events"
+    ]
+  },
+  "replay_attack": {
+    "severity": "medium",
+    "recommended_actions": [
+      "Enforce nonce validation",
+      "Reject stale messages",
+      "Synchronize device clocks",
+      "Review retransmission patterns"
+    ]
+  },
+  "botnet_c2": {
+    "severity": "critical",
+    "recommended_actions": [
+      "Isolate compromised devices",
+      "Block command-and-control domains",
+      "Inspect outbound traffic",
+      "Reimage affected nodes"
+    ]
+  },
+  "jamming": {
+    "severity": "medium",
+    "recommended_actions": [
+      "Switch communication channel",
+      "Increase signal monitoring",
+      "Inspect RF interference source",
+      "Activate backup communication path"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "project": "Multi-Agent AI Cyber Defense Framework",
+  "dataset": "IoT-Cloud-Sec",
+  "dataset_records": 100000,
+  "dataset_features": 126,
+  "random_seed": 42,
+  "detection_model": {
+    "algorithm": "RandomForestClassifier",
+    "n_estimators": 100,
+    "max_depth": 5,
+    "min_samples_leaf": 20,
+    "random_state": 42,
+    "split_strategy": "temporal_80_20"
+  },
+  "threat_analysis_model": {
+    "algorithm": "RandomForestClassifier",
+    "strategy": "two_stage_hierarchical_classification",
+    "random_state": 42
+  },
+  "trust_manager": {
+    "formula": "(detection_confidence + attack_confidence) / 2",
+    "auto_response_threshold": 0.85,
+    "human_review_threshold": 0.60,
+    "escalate_threshold": 0.60
+  },
+  "immutable_logging": {
+    "type": "blockchain_inspired_hash_chain",
+    "hash_algorithm": "SHA-256"
+  },
+  "code_repository": "https://github.com/raju-molla/ai_agent"
+}
