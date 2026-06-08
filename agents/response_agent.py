@@ -1,61 +1,30 @@
+import json
+import os
+
+
+RULES_PATH = os.path.join("config", "response_rules.json")
+
+
+def load_response_rules():
+    with open(RULES_PATH, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
 def recommend_response(threat_analysis):
     attack_group = threat_analysis.get("attack_group")
     attack_type = threat_analysis.get("attack_type")
     confidence = threat_analysis.get("attack_confidence", 0)
 
-    responses = {
-        "network_flooding": {
-            "severity": "high",
-            "actions": [
-                "Enable rate limiting",
-                "Block suspicious source traffic",
-                "Scale gateway resources",
-                "Monitor packet loss and latency"
-            ]
-        },
-        "access_attack": {
-            "severity": "high",
-            "actions": [
-                "Revoke suspicious credentials",
-                "Force password reset",
-                "Enable multi-factor authentication",
-                "Review IAM policy changes"
-            ]
-        },
-        "malware_attack": {
-            "severity": "critical",
-            "actions": [
-                "Isolate affected device",
-                "Run malware scan",
-                "Block command-and-control communication",
-                "Collect forensic evidence"
-            ]
-        },
-        "integrity_attack": {
-            "severity": "critical",
-            "actions": [
-                "Freeze affected data pipeline",
-                "Validate recent data changes",
-                "Restore from trusted backup",
-                "Start forensic investigation"
-            ]
-        },
-        "signal_attack": {
-            "severity": "medium",
-            "actions": [
-                "Switch communication channel",
-                "Increase signal monitoring",
-                "Check gateway interference",
-                "Alert network administrator"
-            ]
-        }
-    }
+    response_rules = load_response_rules()
 
-    response = responses.get(
-        attack_group,
+    response = response_rules.get(
+        attack_type,
         {
             "severity": "unknown",
-            "actions": ["Alert security administrator"]
+            "recommended_actions": [
+                "Alert security administrator",
+                "Manual investigation required"
+            ]
         }
     )
 
@@ -64,15 +33,15 @@ def recommend_response(threat_analysis):
         "attack_type": attack_type,
         "confidence": confidence,
         "severity": response["severity"],
-        "recommended_actions": response["actions"]
+        "recommended_actions": response["recommended_actions"]
     }
 
 
 if __name__ == "__main__":
     sample_threat = {
-    "attack_group": "access_attack",
-    "attack_type": "unauthorized_access",
-    "attack_confidence": 0.94
+        "attack_group": "access_attack",
+        "attack_type": "unauthorized_access",
+        "attack_confidence": 0.94
     }
 
     result = recommend_response(sample_threat)

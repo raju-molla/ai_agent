@@ -16,14 +16,20 @@ def load_ledger():
     if not os.path.exists(LEDGER_PATH):
         return []
 
-    with open(LEDGER_PATH, "r") as file:
-        return json.load(file)
+    if os.path.getsize(LEDGER_PATH) == 0:
+        return []
+
+    try:
+        with open(LEDGER_PATH, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except json.JSONDecodeError:
+        return []
 
 
 def save_ledger(ledger):
     os.makedirs("blockchain", exist_ok=True)
 
-    with open(LEDGER_PATH, "w") as file:
+    with open(LEDGER_PATH, "w", encoding="utf-8") as file:
         json.dump(ledger, file, indent=4)
 
 

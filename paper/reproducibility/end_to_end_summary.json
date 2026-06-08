@@ -1,0 +1,19 @@
+{
+    "total_events": 500,
+    "detected_attacks": 465,
+    "missed_detections": 35,
+    "detection_rate": 0.93,
+    "threat_classification_accuracy_detected_only": 0.9870967741935484,
+    "average_detection_confidence": 0.8106194679958272,
+    "average_attack_confidence": 0.7294991543326674,
+    "average_trust_score": 0.7700597849462366,
+    "trust_decision_distribution": {
+        "human_review": 330,
+        "auto_response": 122,
+        "missed_detection": 35,
+        "escalate": 13
+    },
+    "blockchain_ledger_valid": true,
+    "processing_time_seconds": 166.84891200065613,
+    "average_time_per_event": 0.33369782400131226
+}
