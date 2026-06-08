@@ -1,0 +1,9 @@
+Capability,Traditional IDS,ML-Based IDS,Proposed Framework
+Attack Detection,Yes,Yes,Yes
+Attack Classification,No,Yes,Yes
+Explainability,No,No,Yes
+Automated Response,No,Limited,Yes
+Trust Evaluation,No,No,Yes
+Blockchain Logging,No,No,Yes
+Forensic Audit Trail,No,No,Yes
+Multi-Agent Architecture,No,No,Yes

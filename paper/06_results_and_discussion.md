@@ -86,3 +86,21 @@ The obtained results further indicate that trust-aware decision support can enha
 From a forensic perspective, the Blockchain Logger provides a significant advantage over conventional logging mechanisms by ensuring tamper-resistant evidence preservation and verifiable audit trails. Consequently, the proposed framework addresses multiple limitations of existing cybersecurity architectures while maintaining strong detection and classification performance.
 
 Overall, the results confirm that the combination of multi-agent artificial intelligence, explainable threat intelligence, trust-aware automation, and blockchain-based accountability constitutes a promising approach for next-generation IoT-cloud cyber defense systems.
+## G. Comparison with Existing Approaches
+
+To better position the proposed framework within the existing cybersecurity landscape, a capability-level comparison was conducted against traditional intrusion detection systems and machine learning-based intrusion detection approaches.
+
+### Table V. Capability Comparison
+
+| Capability               | Traditional IDS | ML-Based IDS | Proposed Framework |
+| ------------------------ | --------------- | ------------ | ------------------ |
+| Attack Detection         | ✓               | ✓            | ✓                  |
+| Attack Classification    | ✗               | ✓            | ✓                  |
+| Explainability           | ✗               | ✗            | ✓                  |
+| Automated Response       | ✗               | Limited      | ✓                  |
+| Trust Evaluation         | ✗               | ✗            | ✓                  |
+| Blockchain Logging       | ✗               | ✗            | ✓                  |
+| Forensic Audit Trail     | ✗               | ✗            | ✓                  |
+| Multi-Agent Architecture | ✗               | ✗            | ✓                  |
+
+The comparison demonstrates that traditional intrusion detection systems primarily focus on identifying malicious activity, while machine learning-based approaches extend this capability through automated classification. However, both approaches typically lack explainability, trust-aware decision support, blockchain-backed forensic accountability, and coordinated multi-agent collaboration. The proposed framework integrates all of these capabilities within a unified architecture, enabling a more comprehensive cyber defense workflow suitable for modern IoT-cloud environments.
